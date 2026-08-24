@@ -1,0 +1,15 @@
+{
+  "name": "docs",
+  "private": true,
+  "scripts": {
+    "prebuild": "bun run --filter docshelf build",
+    "build": "docshelf build",
+    "precheck": "bun run --filter docshelf build",
+    "check": "docshelf check",
+    "dev": "bun run --filter docshelf build && docshelf dev",
+    "preview": "docshelf preview"
+  },
+  "dependencies": {
+    "docshelf": "workspace:*"
+  }
+}

@@ -1,0 +1,90 @@
+[site]
+name = "docshelf"
+tagline = "A dead-simple documentation framework with minimal setup, beautiful design, and effortless deployment."
+description = "A dead-simple documentation framework with minimal setup, beautiful design, and effortless deployment."
+url = "https://ofabiodev.github.io/simple-theme"
+
+[announcement]
+text = "Minimal setup. Beautiful docs. Static deployment."
+href = "https://ofabiodev.github.io/simple-theme"
+tone = "success"
+
+[branding]
+title = "docshelf"
+icon = "logo.svg"
+logo_alt = "docshelf logo"
+subtitle = ""
+
+[icons]
+enabled = true
+library = "phosphor"
+weight = "regular"
+
+[theme]
+default = "system"
+respect_system = true
+allow_toggle = true
+
+[ui]
+search = true
+theme_toggle = true
+footer = true
+sidebar_footer = true
+
+[navigation]
+sidebar = true
+sidebar_mode = "auto"
+toc = true
+breadcrumbs = true
+page_navigation = true
+edit_link = false
+last_updated = false
+
+[markdown]
+syntax_highlighting = true
+line_numbers = false
+heading_anchors = true
+smart_typography = false
+
+[search]
+enabled = true
+provider = "local"
+include_code = false
+index = "search-index.json"
+
+[paths]
+docs = "docs"
+output = "dist"
+base = ""
+custom_css = "custom.css"
+
+[links]
+github = "https://github.com/ofabiodev/docshelf"
+npm = "https://www.npmjs.com/package/docshelf"
+edit = ""
+
+[i18n]
+enabled = false
+default_locale = "en"
+locales = ["en"]
+
+[seo]
+title_template = "%s · docshelf"
+description = "Documentation for the docshelf static documentation generator."
+author = "ofabiodev"
+image = ""
+twitter_card = "summary_large_image"
+robots = "index,follow"
+canonical = true
+json_ld = true
+generate_og_image = true
+
+[feeds]
+sitemap = true
+rss = true
+
+[validation]
+broken_links = "error"
+missing_assets = "error"
+frontmatter = "error"
+unknown_components = "warning"

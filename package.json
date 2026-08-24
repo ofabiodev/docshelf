@@ -1,0 +1,18 @@
+{
+  "name": "docshelf-workspace",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "bun run --filter docs build",
+    "build:package": "bun run --filter docshelf build",
+    "build:docs": "bun run --filter docs build",
+    "check": "bun run --filter docshelf typecheck && bun run --filter docshelf test && bun run --filter docs check",
+    "dev": "bun run --filter docs dev",
+    "preview": "bun run --filter docs preview",
+    "test": "bun run --filter docshelf test",
+    "typecheck": "bun run --filter docshelf typecheck"
+  }
+}

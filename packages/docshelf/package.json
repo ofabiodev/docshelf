@@ -1,0 +1,59 @@
+{
+  "name": "docshelf",
+  "version": "1.0.0",
+  "description": "A dead-simple documentation framework with minimal setup, beautiful design, and effortless deployment.",
+  "license": "MIT",
+  "homepage": "https://github.com/ofabiodev/docshelf",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ofabiodev/docshelf.git"
+  },
+  "type": "module",
+  "bin": {
+    "docshelf": "./bin/docshelf.js"
+  },
+  "files": [
+    "bin",
+    "build",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "import": "./build/index.js"
+    }
+  },
+  "types": "./build/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "bun test test/generator.test.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.test.json",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "documentation",
+    "docs",
+    "static-site-generator",
+    "markdown",
+    "github-pages",
+    "cloudflare-pages"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@phosphor-icons/core": "^2.1.1",
+    "highlight.js": "^11.12.0",
+    "js-toml": "^2.0.1",
+    "marked": "^15.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "^7.0.2"
+  }
+}

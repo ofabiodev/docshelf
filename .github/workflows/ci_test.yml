@@ -1,0 +1,51 @@
+name: "🧪 CI — Test"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    name: Test and build
+    steps:
+      - name: ➕ Actions - Checkout
+        uses: actions/checkout@v6
+
+      - name: ➕ Actions - Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "lts/*"
+
+      - name: ➕ Actions - Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: ➕ Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun
+          key: bun-linux-${{ hashFiles('package.json', 'packages/**/package.json', 'apps/**/package.json') }}
+          restore-keys: bun-linux-
+
+      - name: 📦 Installing Dependencies
+        run: bun ci
+
+      - name: ✅ Run Tests
+        run: bun run test
+
+      - name: 🧭 Typecheck Source
+        run: bun run typecheck
+
+      - name: 🔎 Check Documentation
+        run: bun run check
+
+      - name: 🏗️ Build Documentation
+        run: bun run build
