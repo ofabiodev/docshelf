@@ -1,6 +1,6 @@
 {
   "name": "docshelf",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A dead-simple documentation framework with minimal setup, beautiful design, and effortless deployment.",
   "license": "MIT",
   "homepage": "https://github.com/ofabiodev/docshelf",
