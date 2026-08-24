@@ -19,7 +19,7 @@ docshelf turns Markdown files into a static documentation site. You keep writing
 
 The published site contains HTML, CSS, JavaScript, assets, search data, a 404 page, feeds, and metadata. It does not need an application server.
 
-Read the [official documentation](https://ofabiodev.github.io/simple-theme) for the complete guide.
+Read the [official documentation](https://ofabiodev.github.io/docshelf/) for the complete guide.
 
 ## Installation
 

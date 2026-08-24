@@ -2,11 +2,11 @@
 name = "docshelf"
 tagline = "A dead-simple documentation framework with minimal setup, beautiful design, and effortless deployment."
 description = "A dead-simple documentation framework with minimal setup, beautiful design, and effortless deployment."
-url = "https://ofabiodev.github.io/simple-theme"
+url = "https://ofabiodev.github.io/docshelf/"
 
 [announcement]
 text = "Minimal setup. Beautiful docs. Static deployment."
-href = "https://ofabiodev.github.io/simple-theme"
+href = "/getting-started/"
 tone = "success"
 
 [branding]
