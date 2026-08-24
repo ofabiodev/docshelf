@@ -1,22 +1,47 @@
 # docshelf
 
-`docshelf` is a dead-simple documentation framework with minimal setup, a quiet visual system, and static output that deploys anywhere. The generated site has no server dependency.
+Static documentation from Markdown, with a small setup and output that works on any static host.
 
-Read the [official documentation](https://ofabiodev.github.io/simple-theme) for the complete guide.
+<p>
+  <a href="https://github.com/ofabiodev/docshelf/actions?query=branch%3Amain"><img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/ofabiodev/docshelf/ci_test.yml?branch=main&event=push"></a>
+  <a href="https://opensource.org/licenses/MIT"><img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen"></a>
+  <a href="https://www.npmjs.com/package/docshelf"><img alt="NPM Downloads" src="https://img.shields.io/npm/dw/docshelf"></a>
+</p>
 
-## Install
+docshelf turns a folder of Markdown files into static HTML, CSS, JavaScript, search data, feeds, and metadata. The generated site does not need an application server.
+
+Read the [official documentation](https://ofabiodev.github.io/docshelf/) for the complete guide.
+
+## Installation
+
+<table>
+<tr>
+<td width="300">
 
 ```bash
-npm install -D docshelf
-```
-
-```bash
+# Using Bun
 bun add -d docshelf
 ```
 
+</td>
+<td width="300">
+
 ```bash
+# Using npm
+npm install -D docshelf
+```
+
+</td>
+<td width="300">
+
+```bash
+# Using pnpm
 pnpm add -D docshelf
 ```
+
+</td>
+</tr>
+</table>
 
 ## Create a site
 
@@ -25,7 +50,9 @@ npx docshelf init
 npx docshelf dev
 ```
 
-`init` creates only missing starter files, detects an existing `package.json`, `docs/`, or `docshelf.toml`, and adds a small `.gitignore`. Edit Markdown while `dev` is running. The server watches Markdown, public files, and the TOML file while ignoring output, dependencies, and temporary files.
+`init` creates missing starter files. It keeps existing `package.json`, `docs/`, and `docshelf.toml` files, and adds a small `.gitignore` when needed.
+
+The development server watches Markdown files, `public/`, and `docshelf.toml`. It ignores generated output, dependencies, and temporary files.
 
 ## Commands
 
@@ -34,19 +61,19 @@ npx docshelf dev
 | `docshelf init` | Create missing starter files |
 | `docshelf dev` | Build, watch, and serve the site |
 | `docshelf build` | Generate static output in `dist/` |
-| `docshelf check` | Build and report invalid frontmatter, links, assets, and components |
+| `docshelf check` | Validate frontmatter, links, assets, and components |
 | `docshelf preview` | Serve an existing `dist/` folder |
 
 Useful options:
 
 ```bash
-npx docshelf dev --port 4173 --host 127.0.0.1
 npx docshelf dev --open
+npx docshelf dev --port 4173 --host 127.0.0.1
 npx docshelf build --base /my-repository
 npx docshelf build --docs content --out public-site
 ```
 
-CI can set `DOCSHELF_BASE`, `DOCSHELF_DOCS`, `DOCSHELF_OUT`, `DOCSHELF_PORT`, or `DOCSHELF_HOST`. Command-line options take priority.
+For CI, use `DOCSHELF_BASE`, `DOCSHELF_DOCS`, `DOCSHELF_OUT`, `DOCSHELF_PORT`, or `DOCSHELF_HOST`. Command-line options take priority.
 
 ## Project files
 
@@ -61,79 +88,75 @@ public/
 docshelf.toml
 ```
 
-Markdown files become clean routes. `docs/index.md` becomes `/`; `docs/guides/install.md` becomes `/guides/install/`.
+Markdown files become clean routes. `docs/index.md` becomes `/`, and `docs/guides/install.md` becomes `/guides/install/`.
 
-## Markdown features
+## Markdown
 
-The package supports frontmatter, GitHub-flavored Markdown, tables, links, images, fenced code blocks, automatic build-time syntax highlighting, and these optional blocks:
+docshelf supports frontmatter, GitHub-flavored Markdown, tables, links, images, fenced code blocks, automatic syntax highlighting, and reusable blocks:
 
-- callouts
-- accordions
-- tabs
-- code groups
-- cards
-- tables
-- steps
-- version badges
-- keyboard shortcuts
-- image and video blocks
+- Callouts
+- Accordions
+- Tabs
+- Code groups
+- Cards
+- Tables
+- Steps
+- Version badges
+- Keyboard shortcuts
+- Image and video blocks
+
+Example:
+
+````md
+---
+title: Getting started
+description: Start here.
+group: Start here
+order: 1
+---
+
+::: tip title="One command"
+Run `docshelf init` to create a starter site.
+:::
+````
 
 ## Validation
 
-`docshelf check` validates the published documentation before reporting success:
+Run the checker before publishing:
 
-- Frontmatter keys and value types
-- Links to generated pages
-- Images, videos, posters, and other local assets
-- Branding assets referenced from `docshelf.toml`
-- Unknown component names
+```bash
+npx docshelf check
+```
 
-External URLs are left alone. Draft pages are checked for frontmatter but are not checked for links or assets because they are not published.
+It reports invalid frontmatter, links to missing pages, missing local assets, missing branding assets, and unknown component names. External URLs are left alone.
 
 ## Configuration
 
-`docshelf.toml` controls global behavior. The main sections are:
+Use `docshelf.toml` for site-wide settings:
 
 | Section | Purpose |
 | --- | --- |
 | `[site]` | Site name, description, and URL |
-| `[announcement]` | Sticky announcement. The section itself enables it |
-| `[branding]` | Header title and Phosphor or custom asset icon |
+| `[announcement]` | Optional sticky announcement |
+| `[branding]` | Header title and icon |
 | `[theme]` | Light, dark, or system mode |
 | `[navigation]` | Sidebar, breadcrumbs, table of contents, and page links |
-| `[markdown]` | Highlighting, line numbers, heading anchors, and optional smart typography |
+| `[markdown]` | Highlighting, line numbers, and heading anchors |
 | `[search]` | Generated client-side search index |
 | `[seo]` | Canonical links, JSON-LD, robots, and social metadata |
 | `[validation]` | Error, warning, or ignore behavior |
 
-Page-specific settings belong in frontmatter:
+Use `public/custom.css` for colors and visual changes. Set `branding.icon` to a Phosphor icon name or an asset such as `logo.svg` from `public/`.
 
-```md
----
-title: Installation
-description: Install docshelf.
-slug: /install/
-sidebar_label: Install
-toc: true
-layout: doc
-og_image: /images/install-og.png
----
-```
+## Deploy
 
-Use `public/custom.css` for colors and visual changes. Use `branding.icon = "logo.svg"` when the header should use an SVG from `public/`.
-
-## Development
-
-From the repository root:
+Build the static site and upload `dist/` to your host:
 
 ```bash
-bun install
-bun run check
-bun run build
-bun run dev
+npx docshelf build
 ```
 
-The package source is in `src/`. `tsc -p tsconfig.json` writes the publishable JavaScript and declaration files to `build/`. Tests live in `test/`.
+The output works with GitHub Pages, Cloudflare Pages, Netlify, S3, or a plain file server.
 
 ## License
 

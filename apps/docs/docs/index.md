@@ -44,4 +44,4 @@ Publish to Cloudflare Pages, GitHub Pages, or another static host.
 
 The build produces HTML pages, the default stylesheet, the client-side search index, a 404 page, copied public files, optional sitemap and RSS files, robots metadata, and social images.
 
-Read the [official documentation](https://ofabiodev.github.io/simple-theme) for the public guide and the [package source](https://github.com/ofabiodev/docshelf) for implementation details.
+Read the [official documentation](https://ofabiodev.github.io/docshelf/) for the public guide and the [package source](https://github.com/ofabiodev/docshelf) for implementation details.

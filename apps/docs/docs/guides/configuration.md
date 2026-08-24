@@ -19,7 +19,7 @@ url = "https://docs.example.com"
 
 [announcement]
 text = "New documentation is available"
-href = "/changelog/"
+href = "/getting-started/"
 tone = "success"
 
 [branding]
@@ -132,7 +132,7 @@ There is no `enabled` property. Add the section to enable the bar:
 ```toml
 [announcement]
 text = "Version 1.0 is available"
-href = "/changelog/"
+href = "/getting-started/"
 tone = "success"
 ```
 
