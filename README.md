@@ -107,25 +107,6 @@ npx docshelf preview
 
 Publish the generated `dist/` folder.
 
-## Publish the package
-
-This repository uses Release Please and npm Trusted Publishing.
-
-1. Create the npm package `docshelf` if it does not exist yet.
-2. In npm package settings, add a GitHub Actions trusted publisher with:
-   - account: `ofabiodev`
-   - repository: `docshelf`
-   - workflow filename: `cd_publish.yml`
-   - allowed action: `npm publish`
-3. In GitHub repository settings, allow Actions to create and approve pull requests.
-4. Push commits to `main` using Conventional Commits, such as `fix: correct a link` or `feat: add a component`.
-
-The workflow does not use an `NPM_TOKEN`. npm authenticates the publish job with a short-lived OIDC token. It also does not need a custom `PAT` for the normal flow because Release Please uses GitHub's built-in `GITHUB_TOKEN`.
-
-A `feat:` commit creates or updates a Release Please pull request. It does not publish immediately. Merge that pull request to create the GitHub release and publish the package. `fix:` creates a patch release, `feat:` creates a minor release, and `!` marks a breaking change.
-
-The package version lives in `packages/docshelf/package.json`, and Release Please writes the generated changelog beside it at `packages/docshelf/CHANGELOG.md`.
-
 ## Files
 
 | File                     | Use                               |
